@@ -23,5 +23,12 @@ class ProductAdmin(admin.ModelAdmin):
     get_html_photo.short_description = 'Image'
 
 
+class BasketAdmin(admin.ModelAdmin):
+    list_display = ('user', 'product', 'quantity')
+    list_display_links = ('user', 'product')
+    search_fields = ('user', 'product')
+
+
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Basket, BasketAdmin)

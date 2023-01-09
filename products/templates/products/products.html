@@ -7,13 +7,12 @@
     <div class="container">
 
         <div class="row">
-
             <div class="col-lg-3">
 
                 <h1 class="my-4">Store</h1>
                 <div class="list-group">
                     {% for cat in category %}
-                    <a href="#" class="list-group-item">{{ cat }}</a>
+                        <a href="{% url 'products:category' cat.id %}" class="list-group-item">{{ cat }}</a>
                     {% endfor %}
                 </div>
 
@@ -21,7 +20,22 @@
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-
+                {% if messages or form.non_field_errors %}
+                    <div class="alert {% if messages %} alert-success {% else %} alert-warning {% endif %} alert-dismissible fade show"
+                         role="alert"
+                         style="margin-top: 50px;">
+                        {% if messages %}
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        {% else %}
+                            {{ form.non_field_errors }}
+                        {% endif %}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
                 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -70,31 +84,34 @@
                                     <p class="card-text">{{ product.description }}</p>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
+                                    <a class="btn btn-outline-success"
+                                       href="{% url 'products:basket_add' product.id %}">Add to cart</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-
+                {% if page_obj.has_other_pages %}
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
+                                <a class="page-link" href="{% if page_obj.has_previous %}?page=
+                                    {{ page_obj.previous_page_number }}{% endif %}">Prev</a>
+                            </li>
+                            {% for p in paginator.page_range %}
+                                <li class="page-item{% if page_obj.number == p %} active {% endif %}"><a
+                                        class="page-link"
+                                        href="?page={{ p }}">{{ p }}</a></li>
+                            {% endfor %}
+                            <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
+                                <a class="page-link" href="{% if page_obj.has_next %}?page=
+                                    {{ page_obj.next_page_number }}{% endif %}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                {% endif %}
             </div>
-
         </div>
-
     </div>
 
 {% endblock %}
@@ -108,3 +125,4 @@
     </footer>
 
 {% endblock %}
+
