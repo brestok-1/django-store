@@ -1,11 +1,12 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, TemplateView, CreateView
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.views.generic import ListView, TemplateView
+
+from common.views import CommonMixin
+from users.models import User
 
 from .models import *
-from users.models import User
-from common.views import CommonMixin
 
 
 # Create your views here.

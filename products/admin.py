@@ -3,7 +3,6 @@ from django.utils.safestring import mark_safe
 
 from .models import *
 
-
 # Register your models here.
 
 class ProductCategoryAdmin(admin.ModelAdmin):

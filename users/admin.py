@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from users.models import User
 from products.admin import BasketAdmin
-
+from users.models import EmailVerification, User
 
 # Register your models here.
 
@@ -21,3 +20,12 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(User, UserAdmin)
+
+
+class EmailVerificationAdmin(admin.ModelAdmin):
+    list_display = ('code', 'user', 'expiration')
+    fields = ('code', 'user', 'expiration', 'created')
+    readonly_fields = ('created',)
+
+
+admin.site.register(EmailVerification, EmailVerificationAdmin)
