@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from users.models import User
+from products.admin import BasketAdmin
 
 
 # Register your models here.
@@ -10,6 +11,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'get_html_photo')
     list_display_links = ('username',)
     search_fields = ('username', 'email')
+    inlines = (BasketAdmin,)
 
     def get_html_photo(self, object):  # object refers to an object of the women class
         if object.image:

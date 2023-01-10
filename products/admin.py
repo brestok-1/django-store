@@ -15,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'quantity', 'get_html_photo', 'category')
     list_display_links = ('name',)
     search_fields = ('name', 'description')
+    ordering = ('category',)
 
     def get_html_photo(self, object):  # object refers to an object of the women class
         if object.image:
@@ -23,12 +24,10 @@ class ProductAdmin(admin.ModelAdmin):
     get_html_photo.short_description = 'Image'
 
 
-class BasketAdmin(admin.ModelAdmin):
-    list_display = ('user', 'product', 'quantity')
-    list_display_links = ('user', 'product')
-    search_fields = ('user', 'product')
-
+class BasketAdmin(admin.TabularInline):
+    model = Basket
+    fields = ('product', 'quantity')
+    extra = 0
 
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Basket, BasketAdmin)
