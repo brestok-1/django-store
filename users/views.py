@@ -35,9 +35,6 @@ class LoginUserView(CommonMixin, SuccessMessageMixin, LoginView):
     success_message = 'Thanks for authorisation, %(username)s!'
     title = 'Store - Login'
 
-    def get_success_url(self):
-        return reverse_lazy('products:index')
-
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(cleaned_data, username=self.request.user)
 
