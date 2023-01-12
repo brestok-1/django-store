@@ -11,7 +11,6 @@ from common.views import CommonMixin
 from users.forms import *
 from users.models import *
 
-
 # Create your views here.
 # def login(request):
 #     if request.method == 'POST':

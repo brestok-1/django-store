@@ -20,8 +20,7 @@ class ProductsView(CommonMixin, ListView):
     template_name = 'products/products.html'
     title = 'Store - Catalog'
     context_object_name = 'products'
-    paginate_by = 3
-    allow_empty = False
+    paginate_by = 1
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsView, self).get_context_data(**kwargs)
