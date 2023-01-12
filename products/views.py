@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.views.generic import ListView, TemplateView
+from django.core.cache import cache
 
 from common.views import CommonMixin
 from users.models import User
@@ -20,17 +21,18 @@ class ProductsView(CommonMixin, ListView):
     template_name = 'products/products.html'
     title = 'Store - Catalog'
     context_object_name = 'products'
-    paginate_by = 1
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsView, self).get_context_data(**kwargs)
         context['category'] = ProductCategory.objects.all()
         return context
 
-    def get_queryset(self):
-        queryset = super(ProductsView, self).get_queryset()
-        category_id = self.kwargs.get('category_id')
-        return queryset.filter(category_id=category_id) if category_id else queryset
+
+def get_queryset(self):
+    queryset = super(ProductsView, self).get_queryset()
+    category_id = self.kwargs.get('category_id')
+    return queryset.filter(category_id=category_id) if category_id else queryset
 
 
 # def products(request):

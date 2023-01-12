@@ -1,5 +1,5 @@
 {% extends 'products/base.html' %}
-{% load static %}
+{% load static cache %}
 {% block css %}
     <link href="{% static 'vendor/css/products.css' %}" rel="stylesheet">
 {% endblock %}
@@ -67,29 +67,31 @@
                 </div>
 
                 <div class="row">
-
-                    {% for product in products %}
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="card h-100">
-                                <a href="#">
-                                    <img class="card-img-top"
-                                         src="{{ product.image.url }}"
-                                         alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">{{ product.name }}</a>
-                                    </h4>
-                                    <h5>{{ product.price }}&#8364;</h5>
-                                    <p class="card-text">{{ product.description }}</p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <a class="btn btn-outline-success"
-                                       href="{% url 'products:basket_add' product.id %}">Add to cart</a>
+                    {% cache 30 products %}
+                        {% for product in products %}
+                            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                                <div class="card h-100">
+                                    <a href="#">
+                                        <img class="card-img-top"
+                                             src="{{ product.image.url }}"
+                                             alt="">
+                                    </a>
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="#">{{ product.name }}</a>
+                                        </h4>
+                                        <h5>{{ product.price }}&#8364;</h5>
+                                        <p class="card-text">{{ product.description }}</p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a class="btn btn-outline-success"
+                                           href="{% url 'products:basket_add' product.id %}">Add to cart</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% endcache %}
+
                 </div>
                 {% if page_obj.has_other_pages %}
                     <nav aria-label="Page navigation example">
