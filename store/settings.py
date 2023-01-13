@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
 
     'allauth',
     'allauth.account',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 
     'products',
     'users',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -197,3 +199,11 @@ CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
+
+# Stripe
+
+STRIPE_PUBLIC = \
+    'pk_test_51MPkCtDz8YMbqdAO5Ftl57rViczYY9CCqeKWJxIhGNDT05lbaFqq9LDpXRWm4Pva8WmdDXwB6QSYvphS8kZ1oOg700hOItpm7X'
+STRIPE_SECRET_KEY =\
+    'sk_test_51MPkCtDz8YMbqdAOFsOTDG2WKfyNsOD6XHLbRQA3FkxvHwnYLFQiJAElgZxde9zNeTCMgtmcoKTOg3TukdpDsito00L2v6IpX6'
+

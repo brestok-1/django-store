@@ -20,7 +20,6 @@
                          class="img-thumbnail">
                 </div>
                 <form action="{% url 'users:profile' user.id %}" method="post" enctype="multipart/form-data">
-                    {# to work with image #}
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="col-lg-6">
