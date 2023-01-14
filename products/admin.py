@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 
 from .models import *
 
+
 # Register your models here.
 
 class ProductCategoryAdmin(admin.ModelAdmin):
@@ -13,7 +14,7 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'quantity', 'get_html_photo', 'category')
     list_display_links = ('name',)
-    search_fields = ('name', 'description')
+    search_fields = ('name', 'description', 'stripe_product_price_id')
     ordering = ('category',)
 
     def get_html_photo(self, object):  # object refers to an object of the women class
@@ -27,6 +28,7 @@ class BasketAdmin(admin.TabularInline):
     model = Basket
     fields = ('product', 'quantity')
     extra = 0
+
 
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(Product, ProductAdmin)
