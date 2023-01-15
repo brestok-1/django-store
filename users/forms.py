@@ -8,7 +8,7 @@ from django.utils.timezone import now
 
 from users.models import EmailVerification, User
 
-from .tasks import send_email_verification
+from users.tasks import send_email_verification
 
 
 class UserLoginForm(AuthenticationForm):
