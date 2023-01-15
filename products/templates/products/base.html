@@ -49,17 +49,17 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="{% url 'users:profile' user.id %}">Профиль</a>
+                                <a class="dropdown-item" href="{% url 'users:profile' user.id %}">Profile</a>
                             </li>
-                            <li><a class="dropdown-item" href="orders/orders.html">Заказы</a></li>
+                            <li><a class="dropdown-item" href="{% url 'orders:order_list' %}">Orders</a></li>
                             {% if user.is_superuser or user.is_staff %}
-                                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ-панель</a></li>
+                                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin-Panel</a></li>
                             {% endif %}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <a class="dropdown-item" href="{% url 'users:logout' %}">
-                                Выйти
+                                Logout
                             </a>
                         </ul>
                     </li>
