@@ -4,14 +4,21 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
-                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5 text-center">
                         <div class="card-header">
-                            <h3 class="text-center font-weight-light my-4">Спасибо за заказ!</h3>
+                            <h3 class="text-center font-weight-light my-4">Thanks for the order!</h3>
                         </div>
                         <div class="card-body text-center">
                             <h4>
-                                Ваш заказ успешно сформирован.
+                                Your order was created successfully
                             </h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-6 mb-3 text-center">
+                                <a class="btn btn-outline-success" href="{% url 'products:index' %}">
+                                    <div class="fs-4">Return to the catalog</div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
