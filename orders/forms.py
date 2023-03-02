@@ -11,7 +11,6 @@ class OrderForm(forms.ModelForm):
     address = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'France, Paris, 28 Square de la Couronne'}))
 
-
     class Meta:
         model = Order
         fields = ('first_name', 'last_name', 'email', 'address')

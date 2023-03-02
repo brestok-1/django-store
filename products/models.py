@@ -74,7 +74,7 @@ class Basket(models.Model):
     quantity = models.PositiveSmallIntegerField(default=0)
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
-    objects = BasketQuerySet.as_manager()  # we chose what quaryset we want to use
+    objects = BasketQuerySet.as_manager()  # we chose what queryset we want to use
 
     # in default - QuerySet
 
