@@ -1,0 +1,62 @@
+version: '3.10'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/store
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - celery
+    environment:
+      - "SECRET_KEY=XnPkd4Y3TzYhHB61UN16eblriglExpvSkgosmaYOcaEhXru_1sc"
+      - "DEBUG=True"
+      - "DJANGO_SECURE_SSL_REDIRECT=False"
+      - "DJANGO_SECURE_HSTS_SECONDS=0"
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+      - "DJANGO_SECURE_HSTS_PRELOAD=False"
+      - "DJANGO_SESSION_COOKIE_SECURE=False"
+      - "DJANGO_CSRF_COOKIE_SECURE=False"
+      - "DOMAIN_NAME=http://127.0.0.1:8000"
+
+      - "EMAIL_HOST=smtp.yandex.ru"
+      - "EMAIL_PORT=465"
+      - "EMAIL_HOST_USER=Brestok-Store@yandex.ru"
+      - "EMAIL_HOST_PASSWORD=Fullstack135799"
+      - "EMAIL_USE_SSL=True"
+
+      - "REDIS_HOST=redis"
+      - "REDIS_PORT=6379"
+
+      - "STRIPE_PUBLIC=pk_test_51MPkCtDz8YMbqdAO5Ftl57rViczYY9CCqeKWJxIhGNDT05lbaFqq9LDpXRWm4Pva8WmdDXwB6QSYvphS8kZ1oOg700hOItpm7X"
+      - "STRIPE_SECRET_KEY=sk_test_51MPkCtDz8YMbqdAOFsOTDG2WKfyNsOD6XHLbRQA3FkxvHwnYLFQiJAElgZxde9zNeTCMgtmcoKTOg3TukdpDsito00L2v6IpX6"
+      - "STRIPE_WEBHOOK_SECRET=whsec_b01cd9d4fd182a27ec2f6d2b8f18750c012e8e34c4198567645a155c2176443b"
+  db:
+    image: postgres:12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+  celery:
+    build: .
+    volumes:
+      - .:/store
+    command: celery -A store worker -l info
+    depends_on:
+      - redis
+  stripe:
+    image: python:3
+    volumes:
+        - .:/store
+volumes:
+  postgres_data:
+  redis-data:
