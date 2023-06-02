@@ -62,7 +62,8 @@ class BasketQuerySet(models.QuerySet):
         for basket in self:
             item = {
                 'price': basket.product.stripe_product_price_id,
-                'quantity': basket.quantity
+                'quantity': basket.quantity,
+                'currency': 'eur'
             }
             line_items.append(item)
         return line_items
