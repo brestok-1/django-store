@@ -61,9 +61,14 @@ class BasketQuerySet(models.QuerySet):
         line_items = []
         for basket in self:
             item = {
-                'price': basket.product.stripe_product_price_id,
+                'price_data': {
+                    'currency': 'eur',
+                    'product_data': {
+                        'name': basket.product.name,
+                    },
+                    'unit_amount': round(basket.product.price*100)
+                },
                 'quantity': basket.quantity,
-                'currency': 'eur'
             }
             line_items.append(item)
         return line_items

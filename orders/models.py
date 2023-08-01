@@ -38,3 +38,6 @@ class Order(models.Model):
         }
         baskets.delete()
         self.save()
+
+
+

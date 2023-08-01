@@ -32,10 +32,7 @@ services:
     command: celery -A store worker -l info
     depends_on:
       - redis
-  stripe:
-    image: python:3
-    volumes:
-        - .:/store
+
 volumes:
   postgres_data:
   redis-data:

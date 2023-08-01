@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView
 
-from common.views import CommonMixin
+from common.views import CommonMixin, CSRFExemptMixin
 from orders.forms import OrderForm
 from orders.models import Order
 from products.models import Basket
@@ -25,7 +25,7 @@ class CanceledTemplateView(CommonMixin, TemplateView):
     template_name = 'orders/cancel.html'
 
 
-class OrderCreateView(CommonMixin, CreateView):
+class OrderCreateView(CSRFExemptMixin, CommonMixin, CreateView):
     title = 'Store - Making an order'
     template_name = 'orders/order-create.html'
     form_class = OrderForm
