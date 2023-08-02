@@ -13,9 +13,15 @@ battle. I also wanted to create my own bot, but using modern technologies, libra
 
 <div align="center">
 <img src="assets/main.png" align="center" style="width: 100%; height: 40%" />
+</div>
+
+<div align="center">
 <img src="assets/order.png" align="left" style="width: 50%; height: 40%" />
+</div>
+<div align="center">
 <img src="assets/login.png" align="left" style="width: 50%; height: 40%" />
 </div>
+
 <br/>
 
 My project is a full-fledged bot created to read books directly from telegram. You can select a book, flip through the
