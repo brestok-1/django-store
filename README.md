@@ -4,30 +4,26 @@
 <img src="assets/products.png" align="center" style="width: 100%; height: 40%" />
 </div>
 
-
 <br/>
-While reading a course on creating telegram bots, I saw a comment from the person who created the telegram bot sea
-battle. I also wanted to create my own bot, but using modern technologies, libraries, databases and optimization.
+
+I made this django project to explore new technologies and libraries, as well as hone my docker containerization skill.
+In this project, I have collected the most popular and necessary tools for creating complex and full-fledged projects.
 
 ## Description
 
 <div align="center">
-<img src="assets/main.png" align="center" style="width: 100%; height: 40%" />
-</div>
-
-<div align="center">
-<img src="assets/order.png" align="left" style="width: 50%; height: 40%" />
-</div>
-<div align="center">
-<img src="assets/login.png" align="left" style="width: 50%; height: 40%" />
+<img src="assets/store.gif" align="center" style="width: 60%; height: 40%" />
 </div>
 
 <br/>
 
-My project is a full-fledged bot created to read books directly from telegram. You can select a book, flip through the
-pages, go to the table of contents and select the desired page there, add pages to bookmarks, click on them and delete
-them. There are also convenient commands for going to the beginning of the book or continuing reading from the place
-where you finished.
+This is one of the most complex Django projects that I have implemented to date. I created an online store where you can
+log in through social networks or register, receive email confirmation letters, purchase various products, sort them by
+categories, and then pay through the Stripe system. You can also see a list of all your orders and their status. This is
+a fully functional and ready-to-use online store.
+
+Since I position myself as a backend developer, I focused on the internal components, not the appearance of the
+site.
 
 ## Technologies
 
@@ -60,11 +56,7 @@ where you finished.
 ***Other***
 
 ![Docker](https://img.shields.io/badge/-Docker-1C1C1C?&style=for-the-badge)
-
-I wrote a python bot using aiogram. I used two databases: Postgresql for storing user data, books and bookmarks, and
-Redis for caching data and optimizing work. The bot takes data about books via API from a [third-party service](https://github.com/brestok-1/drf-tg-data) and stores
-them in the database. With the help of the Aiocron library, the database is updated every hour. I also connected an
-alembic to initialize the database and create migrations
+![StripeCLI](https://img.shields.io/badge/-Stripe_CLI-1C1C1C?&style=for-the-badge)
 
 ## Project setup
 

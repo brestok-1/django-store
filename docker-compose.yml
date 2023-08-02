@@ -34,7 +34,7 @@ services:
       - redis
   stripe:
     image: stripe/stripe-cli
-    command: listen --api-key ${STRIPE_SECRET_KEY} --device-name ${STRIPE_DEVICE_NAME} --forward-to 0.0.0.0:8000/webhook/
+    command: listen --api-key ${STRIPE_SECRET_KEY} --device-name ${STRIPE_DEVICE_NAME} --forward-to web:8000/webhook/
     depends_on:
       - web
     env_file:

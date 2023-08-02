@@ -87,7 +87,7 @@ def logoutuser(request):
     return HttpResponseRedirect(reverse('index'))
 
 
-class EmailVerificationView(CommonMixin, TemplateView):
+class EmailVerificationView(CommonMixin, TemplateView, LoginRequiredMixin):
     title = 'Store - Email verification'
     template_name = 'users/email_verification.html'
 
