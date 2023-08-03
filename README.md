@@ -12,7 +12,7 @@ In this project, I have collected the most popular and necessary tools for creat
 ## Description
 
 <div align="center">
-<img src="assets/store.gif" align="center" style="width: 80%; height: 40%" />
+<img src="assets/store.gif" align="center" style="width: 100%; height: 40%" />
 </div>
 
 <br/>
