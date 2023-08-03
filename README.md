@@ -58,6 +58,8 @@ site.
 ![Docker](https://img.shields.io/badge/-Docker-1C1C1C?&style=for-the-badge)
 ![StripeCLI](https://img.shields.io/badge/-Stripe_CLI-1C1C1C?&style=for-the-badge)
 
+The main technologies used in the project are data caching with Redis, asynchronous email confirmation sending (I also implemented the sending mechanism myself), social media authentication through django-allauth. The most time-consuming task was connecting to Stripe. In addition to writing a controller that handles payments, I also had to configure webhook operation. I also integrated Stripe products and the django admin panel so that when a new product is added, the data is also updated in Stripe. It was not easy to package all of this into a Docker container, ensure the seamless operation of each service, and automate the deployment of the web application in Docker.
+
 ## Project setup
 
 ***Method 1: Via docker-compose***
@@ -101,7 +103,7 @@ docker-compose exec web python manage.py createsuperuser
 docker-compose exec web python manage.py loaddata products/fixtures/products.json
 ```
 
-#### You can use the data of [these](https://stripe.com/docs/testing) bank cards to test the payment in the store.
+#### You can use the data of [these](https://stripe.com/docs/testing) cards to test the payment in the store.
 
 ***Method 2: Via virtual environment***
 
