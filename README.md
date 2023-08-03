@@ -77,9 +77,11 @@ docker-compose up --build
 
 7. After the project starts, you will see your webhook signing secret at the bottom of the console. Copy it and paste
    the value into the STRIPE_WEBHOOK_SECRET variable. Reload the container:
+
 ```
 docker-compose up -d
 ```
+
 8. Perform migration to the database:
 
 ```
@@ -93,7 +95,7 @@ docker-compose exec web python manage.py createsuperuser
 ```
 
 10. You can log in to the [admin panel](http://127.0.0.1:8000/admin) and add new products and categories or upload the
-   fixtures I created by entering the command:
+    fixtures I created by entering the command:
 
 ```
 docker-compose exec web python manage.py loaddata products/fixtures/products.json
@@ -103,16 +105,8 @@ docker-compose exec web python manage.py loaddata products/fixtures/products.jso
 
 ***Method 2: Via virtual environment***
 
-1. Create and activate a python virtual environment
-2. In the terminal, enter the following command:
+Installation via a virtual environment is much more difficult, because the project has many third-party services. You
+will have to additionally install Redis, Postgresql, Stripe CLI, and change the project settings. If you want to install
+the project through a virtual environment, please contact me and I will give you instructions.
 
-```
-pip3 install -r requirements.txt
-```
-
-3. Create a .env file and paste the data from the .env.example file into it
-4. In REDIS_HOST and POSTGRES_HOST, specify localhost
-5. In BOT_TOKEN, specify the token of your telegram bot created earlier via BotFather
-6. Run the file bot.py
-
-## <div align="center">Thank you for taking the time to review my project. Enjoy reading!👋</div>
+## <div align="center">Thank you for using my store! 👋</div>
