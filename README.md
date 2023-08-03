@@ -12,7 +12,7 @@ In this project, I have collected the most popular and necessary tools for creat
 ## Description
 
 <div align="center">
-<img src="assets/store.gif" align="center" style="width: 60%; height: 40%" />
+<img src="assets/store.gif" align="center" style="width: 80%; height: 40%" />
 </div>
 
 <br/>
@@ -62,14 +62,44 @@ site.
 
 ***Method 1: Via docker-compose***
 
-1. Create a .env file and paste the data from the .env.example file into it
-2. In REDIS_HOST and POSTGRES_HOST, specify the names of docker-compose services (redis and db)
-3. In BOT_TOKEN, specify the token of your telegram bot created earlier via BotFather
-4. In the terminal, enter the following command:
+1. Create a .env file and paste the data from the .env.example file into it.
+2. The value of the variable ALLOWED_HOST specify '*' or '0.0.0.0'.
+3. Generate django secret key on [this site](https://djecrety.ir/) and specify it in the SECRET_KEY variable.
+4. Create an email and configure it to send messages. You can learn more about how to do
+   this [here](https://youtu.be/dnhEnF7_RyM?t=902).
+5. Register in Stripe, copy the Publishable key and Secret key. Insert the values into the variables STRIPE_PUBLIC and
+   STRIPE_SECRET_KEY.
+6. Run the project by entering following command:
 
 ```
 docker-compose up --build
 ```
+
+7. After the project starts, you will see your webhook signing secret at the bottom of the console. Copy it and paste
+   the value into the STRIPE_WEBHOOK_SECRET variable. Reload the container:
+```
+docker-compose up -d
+```
+8. Perform migration to the database:
+
+```
+docker-compose exec web python manage.py migrate
+```
+
+9. Create a superuser by entering the following command:
+
+```
+docker-compose exec web python manage.py createsuperuser
+```
+
+10. You can log in to the [admin panel](http://127.0.0.1:8000/admin) and add new products and categories or upload the
+   fixtures I created by entering the command:
+
+```
+docker-compose exec web python manage.py loaddata products/fixtures/products.json
+```
+
+#### You can use the data of [these](https://stripe.com/docs/testing) bank cards to test the payment in the store.
 
 ***Method 2: Via virtual environment***
 
